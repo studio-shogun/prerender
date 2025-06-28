@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: prerender-server
+    runtime: node
+    plan: starter # $7/month - can be upgraded to standard ($25/month) for more resources
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PRERENDER_TOKEN
+        generateValue: true # This will generate a secure random token
+      - key: PRERENDER_NUM_WORKERS
+        value: 4
+      - key: PRERENDER_NUM_ITERATIONS
+        value: 40
+      - key: PRERENDER_NUM_SOFT_ITERATIONS
+        value: 30
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: PAGE_LOAD_TIMEOUT
+        value: 20000
+      - key: WAIT_AFTER_LAST_REQUEST
+        value: 500
+      - key: PAGE_DONE_CHECK_INTERVAL
+        value: 500
+      # Chrome binary location on Render
+      - key: CHROME_BIN
+        value: /usr/bin/google-chrome
