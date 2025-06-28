@@ -45,9 +45,7 @@ server.use(prerender.removeScriptTags());
 server.use(prerender.httpHeaders());
 
 // Memory cache for performance optimization
-server.use(require('prerender-memory-cache')({
-  maxAge: 3600 * 1000, // 1 hour
-  maxSize: 1000 // Max 1000 pages in cache
-}));
+// Configure via environment variables: CACHE_TTL (seconds) and CACHE_MAXSIZE
+server.use(require('prerender-memory-cache'));
 
 server.start();
