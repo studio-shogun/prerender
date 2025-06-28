@@ -12,10 +12,11 @@ if (process.env.PRERENDER_TOKEN) {
 }
 
 // Core middleware
-server.use(prerender.sendPrerenderHeader());
+server.use(prerender.addMetaTags());
 server.use(prerender.blockResources());
-server.use(prerender.removeScriptTags());
 server.use(prerender.httpHeaders());
+server.use(prerender.removeScriptTags());
+server.use(prerender.sendPrerenderHeader());
 
 // Memory cache for performance optimization
 // Configure via environment variables: CACHE_TTL (seconds) and CACHE_MAXSIZE
